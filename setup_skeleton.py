@@ -2,6 +2,7 @@
 
 from __future__ import print_function
 from argparse import ArgumentParser
+import subprocess
 
 
 def __main__():
@@ -14,7 +15,12 @@ def __main__():
     args = ap.parse_args()
 
     if args.reset:
-        raise NotImplementedError
+        answer = input('Do you really want to reset the repository? [y/N]\n')
+        if answer.lower() in ('y', 'yes'):
+            subprocess.run(['git', 'reset', '--hard'])
+            print("Reset repository.")
+        else:
+            print("Did not reset repository.")
     else:
         # Define the template for setup.py
         template = """from setuptools import setup, find_packages
