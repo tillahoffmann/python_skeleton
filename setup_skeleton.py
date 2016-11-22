@@ -24,7 +24,7 @@ def __main__():
     group.add_argument('name', help='name of the python package', nargs='?')
     group.add_argument('--reset', '-r', action='store_true', help='reset the repository to HEAD')
     ap.add_argument('--author', '-a', help='author of the package', default='tillahoffmann')
-    ap.add_argument('--version', '-v', default='0.1')
+    ap.add_argument('--version', '-v', default='0.1', help='version of the package')
     args = ap.parse_args()
 
     if args.reset:
