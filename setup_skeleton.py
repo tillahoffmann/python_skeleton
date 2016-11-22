@@ -62,6 +62,7 @@ setup(
         replace_in_file('README.md', ('python_skeleton', args.name), ('tillahoffmann', args.author))
         # Update the test
         replace_in_file('tests/test_import.py', ('python_skeleton', args.name))
+        replace_in_file('Makefile', ('python_skeleton', args.name))
 
 
 if __name__ == '__main__':
