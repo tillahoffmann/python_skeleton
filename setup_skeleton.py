@@ -3,6 +3,19 @@
 from __future__ import print_function
 from argparse import ArgumentParser
 import subprocess
+import os
+
+
+def replace_in_file(filename, *tuples):
+    """
+    Replace `old` text in `filename` by `new`.
+    """
+    with open(filename) as fp:
+        text = fp.read()
+    for old, new in tuples:
+        text = text.replace(old, new)
+    with open(filename, 'w') as fp:
+        fp.write(text)
 
 
 def __main__():
@@ -10,7 +23,7 @@ def __main__():
     group = ap.add_mutually_exclusive_group(required=True)
     group.add_argument('name', help='name of the python package', nargs='?')
     group.add_argument('--reset', '-r', action='store_true', help='reset the repository to HEAD')
-    ap.add_argument('--author', '-a', help='author of the package', default='Till Hoffmann')
+    ap.add_argument('--author', '-a', help='author of the package', default='tillahoffmann')
     ap.add_argument('--version', '-v', default='0.1')
     args = ap.parse_args()
 
@@ -39,6 +52,12 @@ setup(
 
         print("Created setup.py.")
 
+        # Rename the package
+        os.rename('python_skeleton', args.name)
+
+        # Rename the environment
+        replace_in_file('environment.yml', ('python_skeleton', args.name))
+        replace_in_file('README.md', ('python_skeleton', args.name), ('tillahoffmann', args.author))
 
 
 if __name__ == '__main__':
