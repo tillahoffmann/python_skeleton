@@ -57,7 +57,11 @@ setup(
 
         # Rename the environment
         replace_in_file('environment.yml', ('python_skeleton', args.name))
+        replace_in_file('.travis.yml', ('python_skeleton', args.name))
+        # Update the README
         replace_in_file('README.md', ('python_skeleton', args.name), ('tillahoffmann', args.author))
+        # Update the test
+        replace_in_file('tests/test_import.py', ('python_skeleton', args.name))
 
 
 if __name__ == '__main__':
