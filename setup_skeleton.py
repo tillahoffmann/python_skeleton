@@ -4,7 +4,7 @@ from __future__ import print_function
 from argparse import ArgumentParser
 import subprocess
 import os
-import urllib
+from urllib import request, error
 
 
 def replace_in_file(filename, *tuples):
@@ -69,10 +69,10 @@ setup(
 
         url = 'https://github.com/%s/%s' % (args.author, args.name)
         try:
-            urllib.request.urlopen(url)
+            request.urlopen(url)
             print("The repository %s/%s is public. Head to https://travis-ci.org to set up continuous integration." %
                   (args.author, args.name))
-        except urllib.error.HTTPError:
+        except error.HTTPError:
             print("The repository %s/%s is private (or does not exist). Head to https://travis-ci.com to set up "
                   "continuous integration. You will have to update the status badge in README.md by hand. Sorry." %
                   (args.author, args.name))
