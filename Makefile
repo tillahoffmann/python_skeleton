@@ -1,4 +1,4 @@
-.PHONY : tests clean
+.PHONY : tests clean install
 
 NOTEBOOKS = $(wildcard examples/*.ipynb)
 NOTEBOOK_OUTPUTS = $(NOTEBOOKS:.ipynb=.html)
@@ -13,3 +13,7 @@ clean :
 
 tests :
 	py.test -v html -rsx
+
+install:
+	conda env create
+	. activate python_skeleton && pip install -e .
