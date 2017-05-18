@@ -12,4 +12,4 @@ clean :
 	rm examples/*.html
 
 tests :
-	py.test -v --cov elboflow --cov-report html -rsx
+	py.test -v html -rsx
