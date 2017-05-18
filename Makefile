@@ -12,7 +12,7 @@ clean :
 	rm examples/*.html
 
 tests :
-	py.test -v html -rsx
+	py.test -v -rsx
 
 install:
 	conda env create
